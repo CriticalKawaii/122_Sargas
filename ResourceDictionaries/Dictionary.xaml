@@ -116,4 +116,22 @@
                 Value="12pt" />
     </Style>
 
+    <Style x:Key="PlaceholderTextBox"
+           TargetType="TextBox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Grid>
+                        <ScrollViewer x:Name="PART_ContentHost" />
+                        <TextBlock Text="{TemplateBinding Tag}"
+                                   Foreground="Gray"
+                                   IsHitTestVisible="False"
+                                   Visibility="{Binding Text.IsEmpty, RelativeSource={RelativeSource TemplatedParent},
+                                    Converter={StaticResource BoolToVisibilityConverter}}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>
