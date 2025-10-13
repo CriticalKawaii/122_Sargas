@@ -9,41 +9,92 @@
       MaxWidth="350"
       HorizontalAlignment="Center"
       VerticalAlignment="Center"
-      d:Background="White"
+      d:Background="#FF9ACBBA"
       Title="Авторизация">
 
     <StackPanel>
 
         <TextBlock Text="Вход в личный кабинет"
-                   x:Name="labelPass"
-                   HorizontalAlignment="Center" />
+                   HorizontalAlignment="Center"
+                   FontWeight="Black" />
+
+        <TextBlock Text="Логин:"
+                   Name="textBlockLogin" />
 
         <TextBox x:Name="TextBoxLogin"
-                 Background="Transparent"
                  ToolTip="Введите логин или почту"
                  MaxLength="64"
-                 TextChanged="TextBoxLogin_TextChanged" />
+                 TextChanged="TextBoxLogin_TextChanged"
+                 d:Text="test" />
+
+        <TextBlock Text="Пароль:"
+                   Name="textBlockPassword" />
+
         <PasswordBox x:Name="PasswordBox"
-                     Background="Transparent"
                      ToolTip="Введите пароль"
                      MaxLength="64"
-                     PasswordChanged="PasswordBox_PasswordChanged" />
+                     PasswordChanged="PasswordBox_PasswordChanged"
+                     d:Password="test" />
 
         <Button x:Name="ButtonEnter"
                 Content="Вход"
                 ToolTip="Кнопка входа"
-                Click="ButtonEnter_Click" />
+                Click="ButtonEnter_Click" 
+                IsDefault="True"/>
 
-        <Button x:Name="ButtonReg"
-                ToolTip="Кнопка регистрации"
-                Click="ButtonReg_Click"
-                Style="{StaticResource ButtonSecondary}">
-            <TextBlock Text="Регистрация" />
-        </Button>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0, 10">
+            <TextBlock Text="Нет аккаунта?"
+                       Name="textBlockNoAcc"/>
+            <Button x:Name="ButtonReg"
+                    ToolTip="Кнопка регистрации"
+                    Click="ButtonReg_Click"
+                    Style="{DynamicResource  ButtonSecondary}">
+                <TextBlock Text="Зарегистрироваться"
+                           Style="{DynamicResource  TextBlockSecondaryButton}" />
+            </Button>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+            <TextBlock Text="Забыли пароль?"
+                       Name="textBlockForgotPass" />
+            <Button x:Name="ButtonChangePassword"
+                    ToolTip="Кнопка смены пароля"
+                    Click="ButtonChangePassword_Click"
+                    Style="{DynamicResource  ButtonSecondary}">
+                <TextBlock Text="Сменить пароль"
+                           Style="{DynamicResource  TextBlockSecondaryButton}" />
+            </Button>
+        </StackPanel>
         
-        <Button x:Name="ButtonChangePassword"
-                Content="Смена пароля"
-                ToolTip="Кнопка смены пароля"
-                Click="ButtonChangePassword_Click" />
+        <TextBlock Name="textBlockCaptcha"
+                   Text="Капча"
+                   Visibility="Collapsed"
+                   d:Visibility="Visible"
+                   HorizontalAlignment="Center" />
+        <TextBox CommandManager.PreviewExecuted="TextBox_PreviewExecuted"
+                 ContextMenu="{x:Null}"
+                 Visibility="Collapsed"
+                 d:Visibility="Visible"
+                 d:Text="test"
+                 x:Name="captcha"
+                 Foreground="Red"
+                 FontStyle="Italic"
+                 FontWeight="Heavy"
+                 FontStretch="UltraCondensed"
+                 HorizontalContentAlignment="Center"
+                 IsReadOnly="True"
+                 FontSize="20"
+                 Width="156" />
+        <TextBox Visibility="Collapsed"
+                 d:Visibility="Visible"
+                 x:Name="captchaInput" />
+        <Button Name="submitCaptcha"
+                Visibility="Collapsed"
+                d:Visibility="Visible"
+                Content="Подтвердить"
+                ToolTip="Подтвердить ввод капчи" Click="submitCaptcha_Click"/>
     </StackPanel>
 </Page>

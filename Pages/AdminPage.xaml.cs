@@ -16,24 +16,13 @@ using System.Windows.Shapes;
 namespace _122_Sargas.Pages
 {
     /// <summary>
-    /// Interaction logic for RegPage.xaml
+    /// Interaction logic for AdminPage.xaml
     /// </summary>
-    public partial class RegPage : Page
+    public partial class AdminPage : Page
     {
-        public RegPage()
+        public AdminPage()
         {
             InitializeComponent();
-            comboBoxRole.SelectedIndex = 0;
-        }
-
-        private void ButtonEnter_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService?.Navigate(new AuthPage());
-        }
-
-        private void ButtonReg_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

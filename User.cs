@@ -21,11 +21,11 @@ namespace _122_Sargas
         }
     
         public int ID { get; set; }
-        public string Loign { get; set; }
         public string Password { get; set; }
         public string Role { get; set; }
         public string FIO { get; set; }
         public string Photo { get; set; }
+        public string Login { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Payment> Payments { get; set; }

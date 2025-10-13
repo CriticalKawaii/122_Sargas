@@ -15,10 +15,11 @@ namespace _122_Sargas
     
     public partial class DBEntities : DbContext
     {
+
         private static DBEntities _context;
         public static DBEntities GetContext()
         {
-            if(_context == null)
+            if (_context == null)
                 _context = new DBEntities();
             return _context;
         }

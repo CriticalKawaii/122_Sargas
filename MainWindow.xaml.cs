@@ -45,8 +45,35 @@ namespace _122_Sargas
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
-            if(MainFrame.CanGoBack)
+            if (MainFrame.CanGoBack)
                 MainFrame?.GoBack();
         }
+
+        private void ButtonTheme_Click(object sender, RoutedEventArgs e)
+        {
+            var lightThemeUri = new Uri("/ResourceDictionaries/Dictionary.xaml", UriKind.Relative);
+            var darkThemeUri = new Uri("/ResourceDictionaries/DictionaryDark.xaml", UriKind.Relative);
+
+            var appResources = Application.Current.Resources.MergedDictionaries;
+
+            var currentTheme = appResources.FirstOrDefault(d => d.Source != null &&
+                (d.Source.OriginalString.Contains("Dictionary.xaml") || d.Source.OriginalString.Contains("DictionaryDark.xaml"))
+            );
+
+            Uri newThemeUri;
+
+            if (currentTheme == null || currentTheme.Source.OriginalString.Contains("Dictionary.xaml"))
+                newThemeUri = darkThemeUri;
+            else
+                newThemeUri = lightThemeUri;
+
+            var newTheme = new ResourceDictionary() { Source = newThemeUri };
+
+            if (currentTheme != null)
+                appResources.Remove(currentTheme);
+
+            appResources.Add(newTheme);
+        }
+
     }
 }
