@@ -69,7 +69,6 @@ namespace _122_Sargas.Pages
                 }
                 else
                 {
-                    MessageBox.Show("Пользователь успешно найден!");
 
                     switch (user.Role)
                     {

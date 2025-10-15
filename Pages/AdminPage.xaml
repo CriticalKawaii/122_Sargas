@@ -4,11 +4,27 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:_122_Sargas.Pages"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
+      d:Background="#FF9ACBBA"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AdminPage">
 
-    <Grid>
+    <StackPanel VerticalAlignment="Center">
         
-    </Grid>
+        <Button x:Name="ButtonTab1e"
+                Content="Таблица пользователей"
+                Click="ButtonTab1e_Click" />
+
+        <Button x:Name="ButtonTab1e2"
+                Content="Таблица категорий"
+                Click="ButtonTab1e2_Click" />
+
+        <Button x:Name="ButtonTab1e3"
+                Content="Таблица платежей"
+                Click="ButtonTab1e3_Click" />
+        
+        <Button x:Name="ButtonTab1e4"
+                Content="Диаграммы"
+                Click="ButtonTab1e4_Click" />
+    </StackPanel>
 </Page>

@@ -4,10 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_122_Sargas"
+        xmlns:charts="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
         mc:Ignorable="d"
         Title="Приложение"
         Height="700"
-        Width="800"
+        Width="1200"
         Loaded="Window_Loaded"
         Closing="Window_Closing"
         Style="{DynamicResource WindowStyle}">
@@ -20,8 +21,8 @@
 
         <Button Content="Назад"
                 HorizontalAlignment="Left"
-                Click="ButtonBack_Click" 
-                IsCancel="True"/>
+                Click="ButtonBack_Click"
+                IsCancel="True" />
 
         <Button Content="☀️/🌙"
                 HorizontalAlignment="Right"

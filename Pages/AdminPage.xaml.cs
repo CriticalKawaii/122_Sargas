@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _122_Sargas.Pages.AdminPages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,5 +25,13 @@ namespace _122_Sargas.Pages
         {
             InitializeComponent();
         }
+
+        private void ButtonTab1e_Click(object sender, RoutedEventArgs e) => NavigationService?.Navigate(new UsersTabPage());
+
+        private void ButtonTab1e2_Click(object sender, RoutedEventArgs e) => NavigationService?.Navigate(new CategoryTabPage());
+
+        private void ButtonTab1e3_Click(object sender, RoutedEventArgs e) => NavigationService?.Navigate(new PaymentTabPage());
+
+        private void ButtonTab1e4_Click(object sender, RoutedEventArgs e) => NavigationService?.Navigate(new DiagrammPage());
     }
 }

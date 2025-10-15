@@ -45,71 +45,87 @@ namespace _122_Sargas.Pages
         private void ButtonReg_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(TextBoxLogin.Text) ||
-string.IsNullOrEmpty(TextBoxFIO.Text) || string.IsNullOrEmpty(PasswordBox.Password) ||
-string.IsNullOrEmpty(PasswordBoxConfirm.Password))
+                string.IsNullOrEmpty(TextBoxFIO.Text) ||
+                string.IsNullOrEmpty(PasswordBox.Password) ||
+                string.IsNullOrEmpty(PasswordBoxConfirm.Password))
             {
                 MessageBox.Show("Заполните все поля!");
                 return;
             }
-            DBEntities db = new DBEntities();
+
+            using (DBEntities db = new DBEntities())
             {
                 var user = db.Users
-                .AsNoTracking()
-                .FirstOrDefault(u => u.Login == TextBoxLogin.Text);
+                    .AsNoTracking()
+                    .FirstOrDefault(u => u.Login == TextBoxLogin.Text);
+
                 if (user != null)
                 {
                     MessageBox.Show("Пользователь с таким логином уже существует!");
                     return;
                 }
-            }
 
-            if (PasswordBox.Password.Length >= 6)
-            {
-                bool en = true;
-                bool number = false;
-                for (int i = 0; i < PasswordBox.Password.Length; i++)
+                if (PasswordBox.Password.Length < 6)
                 {
-                    if (PasswordBox.Password[i] >= '0' && PasswordBox.Password[i] <= '9') number =
-                    true;
-                    else if (!((PasswordBox.Password[i] >= 'A' && PasswordBox.Password[i] <=
-                    'Z') || (PasswordBox.Password[i] >= 'a' && PasswordBox.Password[i] <= 'z'))) en =
-                    false;
-                }
-                if (!en)
-                    MessageBox.Show("Используйте только английскую расскладку!");
-                else if (!number)
-                    MessageBox.Show("Добавьте хотябы одну цифру!");
-                else
                     MessageBox.Show("Пароль слишком короткий, должно быть минимум 6 символов!");
-
-                if (en && number)
-                {
-                    if (PasswordBox.Password != PasswordBoxConfirm.Password)
-                    {
-                        MessageBox.Show("Пароли не совпадают!");
-                    }
-                }
-                else
-                {
-                    User userObject = new User
-                    {
-                        FIO = TextBoxFIO.Text,
-                        Login = TextBoxLogin.Text,
-                        Password = GetHash(PasswordBox.Password),
-                        Role = comboBoxRole.Text
-                    };
-                    db.Users.Add(userObject);
-                    db.SaveChanges();
-                    MessageBox.Show("Пользователь успешно зарегистрирован!");
-                    TextBoxLogin.Clear();
-                    PasswordBox.Clear();
-                    PasswordBoxConfirm.Clear();
-                    comboBoxRole.SelectedIndex = 1;
-                    TextBoxFIO.Clear();
                     return;
                 }
-            }
 
+                bool en = true;
+                bool number = false;
+
+                for (int i = 0; i < PasswordBox.Password.Length; i++)
+                {
+                    if (PasswordBox.Password[i] >= '0' && PasswordBox.Password[i] <= '9')
+                    {
+                        number = true;
+                    }
+                    else if (!((PasswordBox.Password[i] >= 'A' && PasswordBox.Password[i] <= 'Z') ||
+                               (PasswordBox.Password[i] >= 'a' && PasswordBox.Password[i] <= 'z')))
+                    {
+                        en = false;
+                    }
+                }
+
+                if (!en)
+                {
+                    MessageBox.Show("Используйте только английскую раскладку!");
+                    return;
+                }
+
+                if (!number)
+                {
+                    MessageBox.Show("Добавьте хотя бы одну цифру!");
+                    return;
+                }
+
+                if (PasswordBox.Password != PasswordBoxConfirm.Password)
+                {
+                    MessageBox.Show("Пароли не совпадают!");
+                    return;
+                }
+
+                User userObject = new User
+                {
+                    FIO = TextBoxFIO.Text,
+                    Login = TextBoxLogin.Text,
+                    Password = GetHash(PasswordBox.Password),
+                    Role = comboBoxRole.Text
+                };
+
+                db.Users.Add(userObject);
+                db.SaveChanges();
+
+                MessageBox.Show("Пользователь успешно зарегистрирован!");
+
+                TextBoxLogin.Clear();
+                PasswordBox.Clear();
+                PasswordBoxConfirm.Clear();
+                TextBoxFIO.Clear();
+                comboBoxRole.SelectedIndex = 1;
+
+                NavigationService?.Navigate(new AuthPage());
+            }
         }
     }
 }
