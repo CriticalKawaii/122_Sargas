@@ -70,7 +70,7 @@ namespace _122_Sargas.Pages.AdminPages
         {
             TBLogin.Text = "";
             TBPass.Text = "";
-            cmbRole.Items.Clear();
+            cmbRole.SelectedItem = null;
             TBFio.Text = "";
             TBPhoto.Text = "";
         }

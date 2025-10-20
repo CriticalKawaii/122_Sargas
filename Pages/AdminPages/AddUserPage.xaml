@@ -45,12 +45,14 @@
                  Text="{Binding Login}"
                  Grid.Row="0"
                  ToolTip="Введите логин"
-                 Grid.Column="1" />
+                 Grid.Column="1"
+                 MaxLength="64" />
         <TextBox x:Name="TBPass"
                  Text="{Binding Password}"
                  Grid.Column="1"
                  ToolTip="Введите пароль"
-                 Grid.Row="1" />
+                 Grid.Row="1"
+                 MaxLength="64" />
         <ComboBox Name="cmbRole"
                   SelectedItem="{Binding Role}"
                   ToolTip="Ввыберите роль"
@@ -63,7 +65,8 @@
                  Text="{Binding FIO}"
                  Grid.Row="3"
                  ToolTip="Введите ФИО"
-                 Grid.Column="1" />
+                 Grid.Column="1"
+                 MaxLength="64" />
         <TextBox x:Name="TBPhoto"
                  Text="{Binding Photo}"
                  Grid.Row="4"

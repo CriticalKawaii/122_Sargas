@@ -4,11 +4,13 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/ResourceDictionaries/Dictionary.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    
+
     <Style TargetType="Window"
            x:Key="WindowStyle">
         <Setter Property="Background"
                 Value="#FF1E1E1E" />
+        <Setter Property="TextElement.Foreground"
+                Value="White" />
     </Style>
 
     <Style TargetType="Button">
@@ -63,34 +65,20 @@
         </Style.Triggers>
     </Style>
 
-    <Style TargetType="TextBlock"
-           x:Key="TextBase">
-        <Setter Property="FontFamily"
-                Value="Tahoma" />
-        <Setter Property="FontSize"
-                Value="12pt" />
-        <Setter Property="Foreground" Value="White"/>
-    </Style>
-
-    <Style TargetType="TextBlock"
-           x:Key="TextBlockSecondaryButton"
-           BasedOn="{StaticResource TextBase}">
-        <Setter Property="Foreground"
-                Value="#FFFFFCD6" />
-    </Style>
-
     <Style TargetType="ListView">
         <Setter Property="Background"
                 Value="#FF1E1E1E" />
     </Style>
 
+
     <Style TargetType="TextBlock"
-           BasedOn="{StaticResource TextBase}">
-        <Setter Property="Margin"
-                Value="5" />
+           x:Key="TextBlockSecondaryButton"
+           >
+        <Setter Property="Foreground"
+                Value="#FFFFFCD6" />
     </Style>
 
-    <Style TargetType="ComboBoxItem" >
+    <Style TargetType="ComboBoxItem">
         <Setter Property="Padding"
                 Value="5,10" />
         <Setter Property="Margin"
@@ -99,11 +87,12 @@
                 Value="Tahoma" />
         <Setter Property="FontSize"
                 Value="12pt" />
-        <Setter Property="Foreground"
+
+        <Setter Property="TextElement.Foreground"
                 Value="Black" />
     </Style>
 
-    <Style TargetType="ComboBox" >
+    <Style TargetType="ComboBox">
         <Setter Property="Padding"
                 Value="5,10" />
         <Setter Property="Margin"
@@ -112,7 +101,8 @@
                 Value="Tahoma" />
         <Setter Property="FontSize"
                 Value="12pt" />
-        <Setter Property="Foreground"
+
+        <Setter Property="TextElement.Foreground"
                 Value="Black" />
     </Style>
 

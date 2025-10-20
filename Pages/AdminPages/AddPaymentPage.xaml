@@ -19,6 +19,7 @@
         <TextBlock Text="Название платежа"
                    Grid.Row="0"
                    FontSize="20"
+
                    Margin="17,19,569,102" />
         <TextBox x:Name="TBPaymentName"
                  Grid.Row="0"
@@ -58,6 +59,7 @@
                                               Text="Дата" /></TextBlock>
         <TextBox x:Name="TBDate"
                  Grid.Row="1"
+                 MaxLength="64"
                  Margin="400,62,48,57"
                  Text="{Binding Date}" />
         <ComboBox x:Name="CBUser"

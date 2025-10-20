@@ -21,7 +21,7 @@
                        VerticalAlignment="Center" />
             <TextBox  x:Name="fioFilterTextBox"
                       MinWidth="100"
-                      MaxLength="100"
+                      MaxLength="64"
                       TextChanged="fioFilterTextBox_TextChanged" />
             <TextBlock Text="Сортировка по ФИО:"
                        VerticalAlignment="Center" />
