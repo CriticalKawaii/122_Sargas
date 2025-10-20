@@ -50,7 +50,9 @@
                    Name="textBlockRole" />
 
         <ComboBox Name="comboBoxRole"
-                  ToolTip="Выберите роль">
+                  ToolTip="Выберите роль"
+                  d:SelectedIndex="0"
+                  >
             <ComboBoxItem Content="User" />
             <ComboBoxItem Content="Admin" />
         </ComboBox>

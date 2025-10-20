@@ -90,7 +90,8 @@
                  Width="156" />
         <TextBox Visibility="Collapsed"
                  d:Visibility="Visible"
-                 x:Name="captchaInput" />
+                 x:Name="captchaInput" 
+                 MaxLength="6"/>
         <Button Name="submitCaptcha"
                 Visibility="Collapsed"
                 d:Visibility="Visible"

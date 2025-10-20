@@ -73,12 +73,24 @@
     </Style>
 
     <Style TargetType="TextBlock"
+           x:Key="TextBlockSecondaryButton"
+           BasedOn="{StaticResource TextBase}">
+        <Setter Property="Foreground"
+                Value="#FFFFFCD6" />
+    </Style>
+
+    <Style TargetType="ListView">
+        <Setter Property="Background"
+                Value="#FF1E1E1E" />
+    </Style>
+
+    <Style TargetType="TextBlock"
            BasedOn="{StaticResource TextBase}">
         <Setter Property="Margin"
                 Value="5" />
     </Style>
 
-    <Style TargetType="ComboBoxItem">
+    <Style TargetType="ComboBoxItem" >
         <Setter Property="Padding"
                 Value="5,10" />
         <Setter Property="Margin"
@@ -87,22 +99,21 @@
                 Value="Tahoma" />
         <Setter Property="FontSize"
                 Value="12pt" />
-        <Setter Property="Background"
-                Value="#FF1E1E1E"/>
-       
-    </Style>
-
-    <Style TargetType="TextBlock"
-           x:Key="TextBlockSecondaryButton"
-           BasedOn="{StaticResource TextBase}">
         <Setter Property="Foreground"
-                Value="#FFFFFCD6" />
+                Value="Black" />
     </Style>
 
-    <Style TargetType="ListView"
-           >
-        <Setter Property="Background"
-                Value="#FF1E1E1E" />
+    <Style TargetType="ComboBox" >
+        <Setter Property="Padding"
+                Value="5,10" />
+        <Setter Property="Margin"
+                Value="5" />
+        <Setter Property="FontFamily"
+                Value="Tahoma" />
+        <Setter Property="FontSize"
+                Value="12pt" />
+        <Setter Property="Foreground"
+                Value="Black" />
     </Style>
 
 </ResourceDictionary>

@@ -29,6 +29,7 @@
                    FontSize="20"
                    Margin="17,68,615,51" />
         <TextBox x:Name="TBAmount"
+                 MaxLength="64"
                  Margin="400,75,48,45"
                  Text="{Binding Price}" />
 
@@ -49,7 +50,8 @@
         <TextBox x:Name="TBCount"
                  Grid.Row="1"
                  Margin="400,10,48,109"
-                 Text="{Binding Num}" />
+                 Text="{Binding Num}"
+                 MaxLength="64" />
         <TextBlock Grid.Row="1"
                    FontSize="20"
                    Margin="27,62,618,57"><Run Language="ru-ru"
