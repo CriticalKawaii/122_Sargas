@@ -28,6 +28,10 @@ namespace _122_Sargas.Pages
             {
                 if (string.IsNullOrWhiteSpace(user.Photo))
                     user.Photo = null;
+                else
+                {
+                    user.Photo = "pack://application:,,,/Resources/" + user.Photo;
+                }
             }
             ListUser.ItemsSource = currentUsers;
         }

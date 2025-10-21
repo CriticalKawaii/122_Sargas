@@ -28,7 +28,7 @@ namespace _122_Sargas.Pages.AdminPages
 
             if (selectedUser != null)
                 _currentUser = selectedUser;
-
+            
             DataContext = _currentUser;
         }
 
