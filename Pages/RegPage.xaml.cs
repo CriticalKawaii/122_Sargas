@@ -21,12 +21,20 @@ namespace _122_Sargas.Pages
     /// </summary>
     public partial class RegPage : Page
     {
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="RegPage"/>
+        /// </summary>
         public RegPage()
         {
             InitializeComponent();
             comboBoxRole.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Вычисляет хеш-значение пароля с использованием алгоритма SHA1
+        /// </summary>
+        /// <param name="password">Пароль для хеширования</param>
+        /// <returns>Хеш-значение в виде строки в шестнадцатеричном формате</returns>
         public static string GetHash(String password)
         {
             using (var hash = SHA1.Create())
@@ -37,6 +45,11 @@ namespace _122_Sargas.Pages
             }
         }
 
+        /// <summary>
+        /// Обработчик нажатия на кнопку перехода на страницу авторизации
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Аргументы события</param>
         private void ButtonEnter_Click(object sender, RoutedEventArgs e)
         {
             NavigationService?.Navigate(new AuthPage());

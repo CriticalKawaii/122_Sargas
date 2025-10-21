@@ -12,10 +12,27 @@ namespace _122_Sargas.Pages.AdminPages
     /// <summary>
     /// Interaction logic for DiagrammPage.xaml
     /// </summary>
+    /// <remarks>
+    /// Функциональность:
+    /// - Выбор пользователя для анализа
+    /// - Выбор типа диаграммы (Bar, Pie, Column и др.)
+    /// - Экспорт данных в Word с таблицами и статистикой
+    /// - Экспорт данных в Excel с детальной разбивкой по категориям
+    /// </remarks>
     public partial class DiagrammPage : Page
     {
+        /// <summary>
+        /// Контекст базы данных для работы с данными
+        /// </summary>
         private DBEntities _context = new DBEntities();
 
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="DiagrammPage"/>.
+        /// </summary>
+        /// <remarks>
+        /// Создаёт область диаграммы и серию данных.
+        /// Заполняет ComboBox списком пользователей и типов диаграмм.
+        /// </remarks>
         public DiagrammPage()
         {
             InitializeComponent();
@@ -29,6 +46,16 @@ namespace _122_Sargas.Pages.AdminPages
             ComboBoxDiagram.ItemsSource = Enum.GetValues(typeof(SeriesChartType));
         }
 
+        /// <summary>
+        /// Обработчик изменения выбора в ComboBox пользователя или типа диаграммы.
+        /// Обновляет диаграмму с учётом выбранного пользователя и типа визуализации.
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Аргументы события</param>
+        /// <remarks>
+        /// Для каждой категории подсчитывает общую сумму платежей выбранного пользователя (Цена × Количество).
+        /// Обновляет только при наличии выбранного пользователя и типа диаграммы.
+        /// </remarks>
         private void UpdateChart(object sender, SelectionChangedEventArgs e)
         {
             if (ComboBoxUser.SelectedItem is User currentUser && ComboBoxDiagram.SelectedItem is SeriesChartType currentType)
@@ -46,6 +73,21 @@ namespace _122_Sargas.Pages.AdminPages
             }
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки экспорта в Word.
+        /// Создаёт отчёт с таблицами платежей для каждого пользователя.
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Аргументы события</param>
+        /// <remarks>
+        /// Создаваемый отчёт включает:
+        /// - Таблицу платежей по категориям для каждого пользователя
+        /// - Самый дорогой платёж (выделен красным)
+        /// - Самый дешёвый платёж (выделен зелёным)
+        /// - Автоматическую нумерацию страниц
+        /// - Дату создания в заголовке
+        /// Сохраняет документ в форматах DOCX и PDF по пути D:\Payments
+        /// </remarks>
         private void ButtonWord_Click(object sender, RoutedEventArgs e)
         {
             var allUsers = _context.Users.ToList();
@@ -148,6 +190,22 @@ namespace _122_Sargas.Pages.AdminPages
             document.SaveAs2(@"D:\Payments.pdf", Word.WdExportFormat.wdExportFormatPDF);
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки экспорта в Excel.
+        /// Создаёт книгу Excel с листами для каждого пользователя и общим итогом.
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Аргументы события</param>
+        /// <remarks>
+        /// Создаваемый файл включает:
+        /// - Отдельный лист для каждого пользователя (название = ФИО)
+        /// - Группировку платежей по категориям
+        /// - Автоматические формулы для расчёта сумм
+        /// - Промежуточные итоги по категориям
+        /// - Лист "Общий итог" с суммой всех платежей всех пользователей
+        /// - Форматирование таблиц с границами
+        /// - Автоматическую подгонку ширины столбцов
+        /// </remarks>
         private void ButtonExcel_Click(object sender, RoutedEventArgs e)
         {
             var allUsers = _context.Users.ToList().OrderBy(u => u.FIO).ToList();

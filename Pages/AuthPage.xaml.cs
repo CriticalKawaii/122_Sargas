@@ -19,18 +19,33 @@ using System.Windows.Shapes;
 namespace _122_Sargas.Pages
 {
     /// <summary>
-    /// Interaction logic for AuthPage.xaml
+    /// Страница авторизации пользователей.
     /// </summary>
     public partial class AuthPage : Page
     {
+        /// <summary>
+        /// Счётчик неудачных попыток входа
+        /// </summary>
         private int failedAttempts = 0;
+
+        /// <summary>
+        /// Текущий пользователь (если авторизован)
+        /// </summary>
         private User currentUser;
 
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="AuthPage"/>
+        /// </summary>
         public AuthPage()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Вычисляет хеш-значение пароля с использованием алгоритма SHA1
+        /// </summary>
+        /// <param name="password">Пароль для хеширования</param>
+        /// <returns>Хеш-значение в виде строки в шестнадцатеричном формате</returns>
         public static string GetHash(String password)
         {
             using (var hash = SHA1.Create())
@@ -39,6 +54,13 @@ namespace _122_Sargas.Pages
             }
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки входа.
+        /// Проверяет учётные данные пользователя и выполняет вход в систему.
+        /// После 3 неудачных попыток активируется капча.
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Аргументы события</param>
         private void ButtonEnter_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(TextBoxLogin.Text) || string.IsNullOrEmpty(PasswordBox.Password))
@@ -83,6 +105,9 @@ namespace _122_Sargas.Pages
             }
         }
 
+        /// <summary>
+        /// Переключает видимость элементов капчи и формы входа
+        /// </summary>
         private void CaptchaSwitch()
         {
             switch (captcha.Visibility)
@@ -129,6 +154,9 @@ namespace _122_Sargas.Pages
             }
         }
 
+        /// <summary>
+        /// Генерирует новый случайный код капчи длиной 6 символов.
+        /// </summary>
         private void CaptchaChange()
         {
             String allowchar = " ";
@@ -149,6 +177,11 @@ namespace _122_Sargas.Pages
             captcha.Text = pwd;
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки подтверждения капчи.
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Аргументы события</param>
         private void submitCaptcha_Click(object sender, RoutedEventArgs e)
         {
             if (captchaInput.Text != captcha.Text)
@@ -165,6 +198,11 @@ namespace _122_Sargas.Pages
             }
         }
 
+        /// <summary>
+        /// Запрещает операции копирования, вырезания и вставки в поле капчи
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Аргументы события</param>
         private void TextBox_PreviewExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             if (e.Command == ApplicationCommands.Copy ||
@@ -175,25 +213,24 @@ namespace _122_Sargas.Pages
             }
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки регистрации.
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Аргументы события</param>
         private void ButtonReg_Click(object sender, RoutedEventArgs e)
         {
             NavigationService?.Navigate(new RegPage());
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки смены пароля.
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Аргументы события</param>
         private void ButtonChangePassword_Click(object sender, RoutedEventArgs e)
         {
             NavigationService?.Navigate(new ChangePassPage());
         }
-
-        private void TextBoxLogin_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-
-        }
-
     }
 }

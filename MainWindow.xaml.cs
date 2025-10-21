@@ -16,16 +16,24 @@ using _122_Sargas.Pages;
 namespace _122_Sargas
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Главное окно приложения.
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="MainWindow"/>.
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
             MainFrame?.Navigate(new AuthPage());
         }
-
+        /// <summary>
+        /// Обработчик события загрузки окна.
+        /// Запускает таймер для обновления текущего времени каждую секунду.
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Аргументы события</param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             var timer = new System.Windows.Threading.DispatcherTimer();
@@ -35,6 +43,12 @@ namespace _122_Sargas
             timer.Start();
         }
 
+        /// <summary>
+        /// Обработчик события закрытия окна.
+        /// Запрашивает подтверждение пользователя перед закрытием приложения.
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Аргументы события, позволяющие отменить закрытие</param>
         void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (MessageBox.Show("Вы уверены, что хотите закрыть окно?", "Message", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
@@ -43,12 +57,23 @@ namespace _122_Sargas
                 e.Cancel = false;
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки "Назад".
+        /// Выполняет навигацию на предыдущую страницу, если это возможно.
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Аргументы события</param>
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
             if (MainFrame.CanGoBack)
                 MainFrame?.GoBack();
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки переключения между светлой (Dictionary.xaml) и тёмной (DictionaryDark.xaml) темами оформления.
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Аргументы события</param>
         private void ButtonTheme_Click(object sender, RoutedEventArgs e)
         {
             var lightThemeUri = new Uri("/ResourceDictionaries/Dictionary.xaml", UriKind.Relative);

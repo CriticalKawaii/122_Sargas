@@ -20,8 +20,21 @@ namespace _122_Sargas.Pages.AdminPages
     /// </summary>
     public partial class AddUserPage : Page
     {
+        /// <summary>
+        /// Текущий редактируемый или создаваемый пользователь
+        /// </summary>
         private User _currentUser = new User();
 
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="AddUserPage"/>.
+        /// </summary>
+        /// <param name="selectedUser">
+        /// Пользователь для редактирования. Если null, создаётся новый пользователь.
+        /// </param>
+        /// <remarks>
+        /// При передаче существующего пользователя страница работает в режиме редактирования.
+        /// При передаче null создаётся новый пустой пользователь.
+        /// </remarks>
         public AddUserPage(User selectedUser)
         {
             InitializeComponent();
@@ -32,6 +45,22 @@ namespace _122_Sargas.Pages.AdminPages
             DataContext = _currentUser;
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки сохранения пользователя.
+        /// Проверяет валидность всех данных и сохраняет пользователя в базу данных.
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Аргументы события</param>
+        /// <remarks>
+        /// Обязательные поля для заполнения:
+        /// - Логин
+        /// - Пароль
+        /// - Роль (Admin или User)
+        /// - ФИО
+        /// Поле "Фото" является опциональным.
+        /// Если ID пользователя = 0, добавляет новую запись в базу данных.
+        /// В противном случае обновляет существующую запись.
+        /// </remarks>
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             StringBuilder errors = new StringBuilder();
@@ -66,6 +95,12 @@ namespace _122_Sargas.Pages.AdminPages
             }
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки очистки формы.
+        /// Очищает все поля ввода и сбрасывает выбор роли.
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Аргументы события</param>
         private void ButtonClean_Click(object sender, RoutedEventArgs e)
         {
             TBLogin.Text = "";

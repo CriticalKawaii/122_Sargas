@@ -12,11 +12,24 @@ namespace _122_Sargas
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
+    /// <summary>
+    /// Контекст базы данных для работы с Entity Framework.
+    /// Реализует паттерн Singleton для обеспечения единственного экземпляра контекста.
+    /// </summary>
     public partial class DBEntities : DbContext
     {
 
+        /// <summary>
+        /// Единственный экземпляр контекста базы данных
+        /// </summary>
         private static DBEntities _context;
+
+        /// <summary>
+        /// Получает единственный экземпляр контекста базы данных.
+        /// Создаёт новый экземпляр, если он ещё не существует.
+        /// </summary>
+        /// <returns>Экземпляр контекста базы данных</returns>
         public static DBEntities GetContext()
         {
             if (_context == null)
@@ -24,19 +37,46 @@ namespace _122_Sargas
             return _context;
         }
 
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="DBEntities"/>.
+        /// Использует строку подключения "DBEntities" из конфигурационного файла.
+        /// </summary>
         public DBEntities()
             : base("name=DBEntities")
         {
         }
-    
+
+        /// <summary>
+        /// Настраивает модель при создании.
+        /// Выбрасывает исключение, так как используется Database First подход.
+        /// </summary>
+        /// <param name="modelBuilder">Построитель модели</param>
+        /// <exception cref="UnintentionalCodeFirstException">
+        /// Выбрасывается всегда, так как Code First не поддерживается
+        /// </exception>
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
+        /// <summary>
+        /// Получает или задаёт набор категорий платежей
+        /// </summary>
         public virtual DbSet<Category> Categories { get; set; }
+
+        /// <summary>
+        /// Получает или задаёт набор платежей
+        /// </summary>
         public virtual DbSet<Payment> Payments { get; set; }
+
+        /// <summary>
+        /// Получает или задаёт набор системных диаграмм
+        /// </summary>
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+
+        /// <summary>
+        /// Получает или задаёт набор пользователей
+        /// </summary>
         public virtual DbSet<User> Users { get; set; }
     }
 }

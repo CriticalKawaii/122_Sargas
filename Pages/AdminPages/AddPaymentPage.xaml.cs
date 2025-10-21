@@ -20,7 +20,22 @@ namespace _122_Sargas.Pages.AdminPages
     /// </summary>
     public partial class AddPaymentPage : Page
     {
+        /// <summary>
+        /// Текущий редактируемый или создаваемый платёж
+        /// </summary>
         private Payment _currentPayment = new Payment();
+
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="AddPaymentPage"/>.
+        /// Загружает списки категорий и пользователей для выбора.
+        /// </summary>
+        /// <param name="selectedPayment">
+        /// Платёж для редактирования. Если null, создаётся новый платёж.
+        /// </param>
+        /// <remarks>
+        /// Заполняет ComboBox категориями и пользователями из базы данных.
+        /// При передаче существующего платежа страница работает в режиме редактирования.
+        /// </remarks>
         public AddPaymentPage(Payment selectedPayment)
         {
             InitializeComponent();
@@ -36,6 +51,22 @@ namespace _122_Sargas.Pages.AdminPages
             DataContext = _currentPayment;
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки сохранения платежа.
+        /// Проверяет валидность всех данных и сохраняет платёж в базу данных.
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Аргументы события</param>
+        /// <remarks>
+        /// Обязательные поля для заполнения:
+        /// - Дата платежа
+        /// - Количество
+        /// - Цена
+        /// - Пользователь (UserID)
+        /// - Категория (CategoryID)
+        /// Если ID платежа = 0, добавляет новую запись в базу данных.
+        /// В противном случае обновляет существующую запись.
+        /// </remarks>
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             StringBuilder errors = new StringBuilder();
@@ -70,6 +101,11 @@ namespace _122_Sargas.Pages.AdminPages
             }
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки очистки формы.
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Аргументы события</param>
         private void ButtonClean_Click(object sender, RoutedEventArgs e)
         {
             TBPaymentName.Text = "";

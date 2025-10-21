@@ -21,11 +21,20 @@ namespace _122_Sargas.Pages
     /// </summary>
     public partial class ChangePassPage : Page
     {
+
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="ChangePassPage"/>
+        /// </summary>
         public ChangePassPage()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Вычисляет хеш-значение пароля с использованием алгоритма SHA1
+        /// </summary>
+        /// <param name="password">Пароль для хеширования</param>
+        /// <returns>Хеш-значение в виде строки в шестнадцатеричном формате</returns>
         public static string GetHash(String password)
         {
             using (var hash = SHA1.Create())
@@ -36,6 +45,11 @@ namespace _122_Sargas.Pages
             }
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки для смены пароля
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Аргументы события</param>
         private void ButtonChange_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(PasswordBoxOld.Password) ||
