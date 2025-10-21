@@ -164,7 +164,6 @@ namespace _122_Sargas.Pages.AdminPages
                 Excel.Worksheet worksheet = application.Worksheets.Item[i + 1];
                 worksheet.Name = allUsers[i].FIO;
 
-                // Добавление заголовков колонок
                 worksheet.Cells[1][startRowIndex] = "Дата платежа";
                 worksheet.Cells[2][startRowIndex] = "Название";
                 worksheet.Cells[3][startRowIndex] = "Стоимость";
@@ -175,12 +174,10 @@ namespace _122_Sargas.Pages.AdminPages
                 columlHeaderRange.Font.Bold = true;
                 startRowIndex++;
 
-                // Группировка платежей по категориям
                 var userCategories = allUsers[i].Payments.OrderBy(u => u.Date).GroupBy(u => u.Category).OrderBy(u => u.Key.Name);
 
                 foreach (var groupCategory in userCategories)
                 {
-                    // Название категории
                     Excel.Range headerRange = worksheet.Range[worksheet.Cells[1][startRowIndex], worksheet.Cells[5][startRowIndex]];
                     headerRange.Merge();
                     headerRange.Value = groupCategory.Key.Name;
@@ -188,7 +185,6 @@ namespace _122_Sargas.Pages.AdminPages
                     headerRange.Font.Italic = true;
                     startRowIndex++;
 
-                    // Заполнение данных о платежах
                     foreach (var payment in groupCategory)
                     {
                         worksheet.Cells[1][startRowIndex] = payment.Date.ToString("dd.MM.yyyy");
@@ -201,7 +197,6 @@ namespace _122_Sargas.Pages.AdminPages
                         startRowIndex++;
                     }
 
-                    // Строка "ИТОГО"
                     Excel.Range sumRange = worksheet.Range[worksheet.Cells[1][startRowIndex], worksheet.Cells[4][startRowIndex]];
                     sumRange.Merge();
                     sumRange.Value = "ИТОГО:";
@@ -209,12 +204,10 @@ namespace _122_Sargas.Pages.AdminPages
                     worksheet.Cells[5][startRowIndex].Formula = $"=SUM(E{startRowIndex - groupCategory.Count()}:E{startRowIndex - 1})";
                     sumRange.Font.Bold = worksheet.Cells[5][startRowIndex].Font.Bold = true;
 
-                    // Добавление к общему итогу
                     grandTotal += groupCategory.Sum(p => p.Price * p.Num);
                     startRowIndex++;
                 }
 
-                // Добавление границ таблицы
                 Excel.Range rangeBorders = worksheet.Range[worksheet.Cells[1][1], worksheet.Cells[5][startRowIndex - 1]];
                 rangeBorders.Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
                 rangeBorders.Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle = Excel.XlLineStyle.xlContinuous;
@@ -223,26 +216,21 @@ namespace _122_Sargas.Pages.AdminPages
                 rangeBorders.Borders[Excel.XlBordersIndex.xlInsideHorizontal].LineStyle = Excel.XlLineStyle.xlContinuous;
                 rangeBorders.Borders[Excel.XlBordersIndex.xlInsideVertical].LineStyle = Excel.XlLineStyle.xlContinuous;
 
-                // Автоподбор ширины столбцов
                 worksheet.Columns.AutoFit();
             }
 
-            // Добавление листа "Общий итог"
             Excel.Worksheet summarySheet = workbook.Worksheets.Add(After: workbook.Worksheets[workbook.Worksheets.Count]);
             summarySheet.Name = "Общий итог";
             summarySheet.Cells[1, 1] = "Общий итог:";
             summarySheet.Cells[1, 2] = grandTotal;
             (summarySheet.Cells[1, 2] as Excel.Range).NumberFormat = "0.00";
 
-            // Форматирование: красный цвет и жирный шрифт
             Excel.Range summaryRange = summarySheet.Range[summarySheet.Cells[1, 1], summarySheet.Cells[1, 2]];
             summaryRange.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Red);
             summaryRange.Font.Bold = true;
 
-            // Автоподбор ширины столбцов
             summarySheet.Columns.AutoFit();
 
-            // Отображение приложения
             application.Visible = true;
         }
 

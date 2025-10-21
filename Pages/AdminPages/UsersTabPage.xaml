@@ -23,8 +23,7 @@
                                     Binding="{Binding Login}"
                                     Width="80" />
                 <DataGridTextColumn Header="Пароль"
-                                    Binding="{Binding 
-Password}"
+                                    Binding="{Binding Password}"
                                     Width="80" />
                 <DataGridTextColumn Header="Роль"
                                     Binding="{Binding Role}"

@@ -15,8 +15,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <WrapPanel 
-                   HorizontalAlignment="Center">
+        <WrapPanel HorizontalAlignment="Center">
             <TextBlock Text="Введите ФИО для поиска:"
                        VerticalAlignment="Center" />
             <TextBox  x:Name="fioFilterTextBox"
@@ -27,8 +26,7 @@
                        VerticalAlignment="Center" />
             <ComboBox SelectionChanged="sortComboBox_SelectionChanged"
                       x:Name="sortComboBox"
-                      SelectedIndex="0"
-                      >
+                      SelectedIndex="0">
                 <ComboBoxItem Content="По возрастанию" />
                 <ComboBoxItem Content="По убыванию" />
             </ComboBox>
@@ -37,8 +35,7 @@
                       Unchecked="onlyAdminCheckBox_Unchecked"
                       Content="Только администраторы"
                       x:Name="onlyAdminCheckBox"
-                      VerticalContentAlignment="Center"
-                       />
+                      VerticalContentAlignment="Center" />
             <Button x:Name="clearFiltersButton"
                     Content="Очистить фильтр"
                     Click="clearFiltersButton_Click" />
@@ -69,7 +66,7 @@
                                Grid.Row="1"
                                Stretch="UniformToFill"
                                HorizontalAlignment="Center"
-                               Source="{Binding Photo, TargetNullValue='pack://application:,,,/images/default.png', FallbackValue='pack://application:,,,/images/default.png'}" />
+                               Source="{Binding Photo, TargetNullValue='pack://application:,,,/images/placeholder.png', FallbackValue='pack://application:,,,/images/placeholder.png'}" />
 
 
                         <TextBlock VerticalAlignment="Center"
@@ -78,16 +75,18 @@
                                    Grid.Row="0"
                                    TextWrapping="Wrap"
                                    Text="{Binding FIO}"
+                                   Style="{DynamicResource TextBlockDataGrid}"
                                    HorizontalAlignment="Center"
                                    FontSize="18"
                                    FontWeight="Bold" />
-                        
+
                         <TextBlock VerticalAlignment="Center"
                                    TextAlignment="Left"
                                    Width="200"
                                    Grid.Row="2"
                                    HorizontalAlignment="Center"
                                    FontSize="18"
+                                   Style="{DynamicResource TextBlockDataGrid}"
                                    Text="{Binding Role}" />
                     </Grid>
                 </DataTemplate>

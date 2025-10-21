@@ -6,25 +6,30 @@
       xmlns:local="clr-namespace:_122_Sargas.Pages"
       mc:Ignorable="d"
       d:Background="#FF9ACBBA"
-      d:DesignHeight="450" d:DesignWidth="800"
+      MinWidth="300"
+      MaxWidth="300"
       Title="AdminPage">
 
     <StackPanel VerticalAlignment="Center">
         
         <Button x:Name="ButtonTab1e"
                 Content="Таблица пользователей"
-                Click="ButtonTab1e_Click" />
+                Click="ButtonTab1e_Click"
+                HorizontalAlignment="Stretch" />
 
         <Button x:Name="ButtonTab1e2"
                 Content="Таблица категорий"
-                Click="ButtonTab1e2_Click" />
+                Click="ButtonTab1e2_Click"
+                HorizontalAlignment="Stretch" />
 
         <Button x:Name="ButtonTab1e3"
                 Content="Таблица платежей"
-                Click="ButtonTab1e3_Click" />
+                Click="ButtonTab1e3_Click"
+                HorizontalAlignment="Stretch" />
         
         <Button x:Name="ButtonTab1e4"
                 Content="Диаграммы"
-                Click="ButtonTab1e4_Click" />
+                Click="ButtonTab1e4_Click"
+                HorizontalAlignment="Stretch" />
     </StackPanel>
 </Page>

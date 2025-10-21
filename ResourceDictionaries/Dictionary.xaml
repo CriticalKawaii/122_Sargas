@@ -77,9 +77,14 @@
     <Style TargetType="TextBlock"
            x:Key="TextBlockSecondaryButton"
            BasedOn="{StaticResource TextBase}">
-
+    
     </Style>
 
+    <Style TargetType="TextBlock"
+           x:Key="TextBlockDataGrid"
+           BasedOn="{StaticResource TextBase}">
+        
+    </Style>
 
     <Style TargetType="TextBox">
         <Setter Property="Padding"
