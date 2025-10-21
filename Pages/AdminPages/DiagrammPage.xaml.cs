@@ -6,7 +6,6 @@ using System.Windows.Forms.DataVisualization.Charting;
 using Word = Microsoft.Office.Interop.Word;
 using Excel = Microsoft.Office.Interop.Excel;
 
-
 namespace _122_Sargas.Pages.AdminPages
 {
     /// <summary>
