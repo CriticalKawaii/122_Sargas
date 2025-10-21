@@ -37,7 +37,7 @@
                    Grid.Row="3"
                    Grid.Column="0" />
         <TextBlock Text="Фото (необязательно)"
-                   Grid.Row="3"
+                   Grid.Row="4"
                    Grid.Column="0"
                    Grid.ColumnSpan="2"
                    Grid.RowSpan="2" />

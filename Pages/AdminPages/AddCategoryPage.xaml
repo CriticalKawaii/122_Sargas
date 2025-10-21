@@ -23,6 +23,7 @@
             <TextBox x:Name="TBCategoryName"
                      Grid.Row="0"
                      Width="300"
+                     MaxLength="64"
                      Text="{Binding Name}"
                      VerticalAlignment="Center" />
         </StackPanel>
