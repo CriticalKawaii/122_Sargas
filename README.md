@@ -26,7 +26,7 @@
 
 ---
 
-## SQL-скрипт базы данных `edchenko_DB_Payment`
+## SQL-скрипт базы данных
 
 ```sql
 USE [master]
