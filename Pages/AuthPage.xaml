@@ -11,9 +11,7 @@
       VerticalAlignment="Center"
       d:Background="#FF9ACBBA"
       Title="Авторизация">
-
     <StackPanel>
-
         <TextBlock Text="Вход в личный кабинет"
                    HorizontalAlignment="Center"
                    FontWeight="Black" />
@@ -24,7 +22,6 @@
         <TextBox x:Name="TextBoxLogin"
                  ToolTip="Введите логин или почту"
                  MaxLength="64"
-                 TextChanged="TextBoxLogin_TextChanged"
                  d:Text="test" />
 
         <TextBlock Text="Пароль:"
@@ -33,7 +30,6 @@
         <PasswordBox x:Name="PasswordBox"
                      ToolTip="Введите пароль"
                      MaxLength="64"
-                     PasswordChanged="PasswordBox_PasswordChanged"
                      d:Password="test" />
 
         <Button x:Name="ButtonEnter"

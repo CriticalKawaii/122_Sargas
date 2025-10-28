@@ -84,6 +84,5 @@
                 Click="ButtonClean_Click"
                 Grid.ColumnSpan="2"
                 HorizontalAlignment="Left" />
-
     </Grid>
 </Page>
